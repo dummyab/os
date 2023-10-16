@@ -1,0 +1,22 @@
+13. Write an awk script to delete duplicated lines from a text file. The
+order of the original lines must remain unchanged.
+BEGIN {
+printf " Program starts\n" ;
+}
+{
+if ( data[$0]++ == 0 )
+line[++count]=$0;
+}
+END {
+for (i=1; i<= count; i++)
+printf "\n" line[i];
+printf " \n\n program ends";
+printf "\n"
+}
+Execution and Output:
+Input file: file with repeated lines say --- duplicates.txt
+$ awk -f thirteen.awk duplicqtelines.txt
+Program starts
+--------------
+unique lines
+---------------

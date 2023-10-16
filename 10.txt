@@ -1,0 +1,29 @@
+10. Write a shell script that accept a list of filenames as its argument, count
+and report occurrence of each word that is present in the first argument
+file on other argument files.
+clear
+if [ $# -lt 2 ]
+then
+echo invalid arguments
+exit
+fi
+for word in `cat $1`
+do
+for file in $*
+do
+if [ $file != "$1" ]
+then
+echo count :$word in $file
+echo `grep -iow "$word" $file | wc -w`
+fi
+done
+done
+Execution and Output:
+$ sh tenth.sh filename1 filename2
+count :Ram in filename2.txt 2
+count :BTech in filename2.txt 0
+count :Raheem in filename2.txt 0
+count :M in filename2.txt 0
+count :Tech in filename2.txt 0
+count :Joseph in filename2.txt 2
+count :PhD in filename2.txt 1

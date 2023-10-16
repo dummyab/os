@@ -1,0 +1,28 @@
+3. Write a shell script which accepts valid log- in names as arguments and
+prints their corresponding home directories, if no arguments are specified,
+print a suitable error message.
+clear
+if [ $# -eq 0 ]
+then
+echo “No command line arguments passed”
+exit
+fi
+while [ $1 ]
+do
+cat /etc/passwd | cut -d ':' -f1 | grep ^$1 > temp
+ck=`cat temp`
+if [ $ck != $1 ]
+then
+echo Error:$1 is an invalid log-in name
+else
+echo Home Directory for $1 is:
+cat /etc/passwd | grep "$1" | cut -d ':' -f6
+fi
+shift
+done
+Execution and Output:
+$ sh third.sh
+No command line arguments passed
+$ sh third.sh veera
+Home Directory for veera is:
+/home/veera

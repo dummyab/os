@@ -1,0 +1,33 @@
+4. Create a script file called file-properties that reads a file name entered and outputs it properties.
+clear
+echo Enter the filename:\c
+read fn
+if [ -f $fn ]
+then
+echo File permissions are
+echo `ls -l $fn | cut -d ' ' -f1`
+echo Number of links to the file
+echo `ls -l $fn | cut -d ' ' -f2`
+echo File size
+echo `ls -l $fn | cut -d ' ' -f5`
+echo Last modified Month
+echo `ls -l $fn | cut -d ' ' -f6`
+echo Last modified Date
+echo `ls -l $fn | cut -d ' ' -f7`
+else
+echo File not found
+fi
+Execution and Output:
+$ sh fourth.sh
+Enter the filename:
+first.sh
+File permissions are
+-rw-rw-r--
+Number of links to the file
+1
+File size
+334
+Last modified Month
+Jun
+Last modified Date
+15

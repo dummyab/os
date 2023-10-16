@@ -1,0 +1,17 @@
+11. Write a shell script that accept the filename, starting and ending line number as an argument
+and display all the lines between the given line number.
+clear
+if [ $# -ne 3 ]
+then
+echo "Invalid number of arguments"
+exit
+fi
+c=`cat $1 | wc -l`
+if [ $2 -le 0 -o $3 -le 0 -o $2 -gt $3 -o $3 -gt $c ]
+then
+echo "Invalid Input" exit
+fi
+sed -n "$2, $3 p" $1
+Execution and Output:
+$ sh eleventh.sh file1 2 5
+content of the file1 between 2nd and 5th line should be displayed

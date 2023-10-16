@@ -1,0 +1,26 @@
+5.Write a shell script that accept one or more file names as argument and convert all of them to
+uppercase, provided they exist in current directory.
+#! /bin/bash
+clear
+if [ $# -eq 0 ]
+then
+echo Invalid number of arguments
+exit
+fi
+for fn in "$@"
+do
+if [ -f $fn ]
+then
+echo $fn | tr '[a-z]' '[A-Z]'
+else
+echo File not found
+fi
+done
+
+Execution and Output:
+$ sh fifth.sh
+Invalid number of arguments
+$ sh fifth.sh example.sh first.sh fifth.sh
+EXAMPLE.SH
+FIRST.SH
+FIFTH.SH

@@ -1,0 +1,40 @@
+14 Write an awkscript to find out total number of books sold in each
+discipline as well as total books sold, using associate array like
+table as given below.
+a. Computer science 34
+b. Commerce 67
+c. Management 80
+d. Journalism 43
+BEGIN {
+printf " Total number of books each category\n";
+}
+{
+b[$1] += $2;
+}
+END {
+for(item in b) {
+printf "%s %s %d \n", item , "=", b[item];
+total += b[item];
+}
+printf "%s %s %s \n", "total books", "=",total;
+}
+Execution and Output:
+$ cat Books.data
+ComputerScience 34
+Commerce 67
+Management 80
+Journalism 43
+ComputerScience 45
+Commerce 10
+Management 40
+Journalism 20
+Commerce 100
+$ awk -f fifteenth.awk Books.data
+Commerce 67
+Management 80
+Journalism 43
+ComputerScience 45
+Commerce 10
+Management 40
+Journalism 20
+Commerce 100

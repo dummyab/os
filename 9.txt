@@ -1,0 +1,17 @@
+9. Write a shell script that gets executed displays the message either “Good Morning”
+or “Good Afternoon” or “Good Evening” depending upon time at which the user logs in.
+#! bin/bin/sh
+clear
+h=`who | head -1 | tr -s ' ' | cut -d ' ' -f4 | cut -d ':' -f1`
+if [ $h -lt 12 ]
+then
+echo Good Morning
+elif [ $h -ge 12 -a $h -lt 17 ]
+then
+echo Good Afternoon
+else
+echo Good Evening
+fi
+Execution and Output:
+$ sh ninth.sh
+Good Evening

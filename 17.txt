@@ -1,0 +1,116 @@
+17. Write a program using system call: create, open, write, close, stat, fstat, lseek.
+C Program for open() system call
+#include<stdio.h>
+#include<fcntl.h>
+#include<errno.h>
+extern int errno;
+int main() {
+// if file does not have in directory
+// then file foo.txt is created.
+int fd = open("exposure.txt", O_RDONLY | O_CREAT);
+printf("fd = %d \n", fd);
+if (fd == -1) {
+// print which type of error have in a code
+printf("\n Error Number % d\n", errno);
+// print program detail "Success or failure"
+perror("Program");
+}
+return 0;
+}
+Execution and Output:
+$ cc seventeen_open.c
+$ ./a.out
+fd = -1
+Error Number 13
+Program: Permission denied
+C program to illustrate
+// read system Call
+#include<stdio.h>
+#include <fcntl.h>
+int main() {
+int fd, sz;
+char *c = (char *) calloc(100, sizeof(char));
+fd = open("foo.txt", O_RDONLY);
+if (fd < 0) {
+perror("r1"); exit(1); }
+sz = read(fd, c, 10);
+printf("called read(% d, c, 10). returned that" " %d bytes were read.\n", fd, sz);
+c[sz] = '\0';
+printf("Those bytes are as follows: % s\n", c);
+}
+Execution and output:
+$ cc seventeen_read.c
+$ ./a.out
+called read( 3, c, 10). returned that 10 bytes were read.
+Those bytes are as follows: // C progr
+// C program to illustrate write system Call
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+int main() {
+int sz;
+int fd = open("example_write.txt", O_WRONLY | O_CREAT | O_TRUNC, 0664);
+printf("fd = %d \n", fd);
+if (fd < 0) {
+perror("r1");
+exit(1);
+}
+sz = write(fd, "Hello Presidentians", strlen("Hello Presidentians"));
+printf("called write(%d, \" Hello Presidentians\\n \")",fd);
+printf("\nIt returned %d\n", sz);
+printf("String length of %ld \n", strlen("Hello Presidentians\n"));
+close(fd);
+}
+Execution and Output:
+$ cc seventeen_write.c
+$ ./a.out
+fd = 3
+called write(3, " Hello Presidentians\n ")
+It returned 19
+String length of 20
+// C program to illustrate close system Call
+#include<stdio.h>
+#include <fcntl.h>
+int main() {
+int fd1 = open("file1.txt", O_RDONLY);
+if (fd1 < 0) {
+perror("c1");
+exit(1);
+}
+printf("opened the fd = % d\n", fd1);
+// Using close system Call
+if (close(fd1) < 0) {
+perror("c1");
+exit(1);
+}
+printf("closed the fd.\n");
+}
+Exectution and Output:
+$ cc seventeen_close.c
+$ ./a.out
+opened the fd = 3
+closed the fd.
+/*Program using lseek() system call that reads 10 characters from file “file1” and print on screen.
+Again read 10 characters and write on screen.
+*/
+#include<unistd.h>
+#include<fcntl.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include <stdio.h>
+int main() {
+int n,f;
+char buff[10];
+f=open("file1",O_RDWR);
+read(f,buff,10);
+write(1,buff,10);
+read(f,buff,10);
+write(1,buff,10);
+printf("\n");
+}
+Execution and Output:
+$ cc seventeen_lseek.c
+$ ./a.out
+Hello II semester MC // 20 characters from file1

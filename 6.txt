@@ -1,0 +1,21 @@
+6. Write a shell script that accepts as filename as argument and display its creation time if file
+exist and if it does not send output error message.
+#! /bin/bash
+clear
+if [ $# -ne 1 ]
+then
+echo Invalid number of arguments
+exit
+fi
+if [ -e $1 ]
+then
+echo File $1 is created on :`ls -l | tr -s " " | cut -d " " -f6,7,8`
+else
+echo File not found
+fi
+Execution and Output:
+$ sh sixth.sh
+Invalid number of arguments
+$ sh sixth.sh sixth.sh
+File sixth.sh is created on :
+Jul 12 09:13

@@ -1,0 +1,25 @@
+8. Write a shell script to list all the files in a directory whose filename is at least 10 characters.
+(use expr command to check the length)
+#! /bin/bash
+clear
+echo `ls > listfiles`
+echo the file with characters greater than 9
+for i in `cat listfiles`
+do
+len=`expr length $i`
+if [ $len -gt 9 ]
+then
+echo $i
+else
+continue
+fi
+done
+Execution and Output:
+$ sh eighth.sh
+
+The files with characters greater than 9 are:
+arithmeticcalculations.txt 26
+calender.txt 12
+example.sh 10
+seventh.sh 10
+working.txt 11
